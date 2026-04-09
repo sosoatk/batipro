@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 30% 12%;
+
+    --card: 220 20% 98%;
+    --card-foreground: 220 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 12%;
+
+    --primary: 220 60% 22%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 10% 30%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 30 95% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 220 60% 22%;
+
+    --radius: 0.75rem;
+
+    --glass-bg: 220 20% 98% / 0.6;
+    --glass-border: 220 20% 100% / 0.3;
+    --glow-accent: 30 95% 55%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 30% 6%;
+    --foreground: 210 40% 98%;
+    --card: 220 30% 10%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 30% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 220 60% 22%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 30 95% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: hsla(var(--glass-bg));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsla(var(--glass-border));
+    border-radius: var(--radius);
+  }
+
+  .btn-neumorph {
+    @apply relative overflow-hidden font-semibold tracking-wide;
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+    border-radius: var(--radius);
+    box-shadow:
+      4px 4px 10px hsla(30, 95%, 35%, 0.3),
+      -2px -2px 6px hsla(30, 95%, 75%, 0.4),
+      inset 0 1px 0 hsla(0, 0%, 100%, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .btn-neumorph:hover {
+    box-shadow:
+      2px 2px 6px hsla(30, 95%, 35%, 0.2),
+      -1px -1px 4px hsla(30, 95%, 75%, 0.3),
+      inset 0 1px 0 hsla(0, 0%, 100%, 0.2),
+      0 0 20px hsla(var(--glow-accent) / 0.4),
+      0 0 40px hsla(var(--glow-accent) / 0.2);
+    transform: translateY(-1px);
+  }
+
+  .btn-neumorph:active {
+    box-shadow:
+      inset 2px 2px 6px hsla(30, 95%, 35%, 0.3),
+      inset -1px -1px 4px hsla(30, 95%, 75%, 0.2);
+    transform: translateY(0px);
+  }
+
+  .text-body {
+    @apply text-foreground/70;
+    font-weight: 300;
+  }
+
+  .navbar-blur {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsla(var(--background) / 0.85);
+  }
+}
+
+@layer utilities {
+  .animate-section {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-section.visible {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
